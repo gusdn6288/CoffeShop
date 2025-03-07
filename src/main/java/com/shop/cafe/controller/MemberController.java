@@ -21,18 +21,19 @@ public class MemberController {
 	MemberService memberService;
 	
 	@PostMapping("insertMember")
-	public Map<String, String> insertMember(@RequestBody  Member m) {
-		Map<String,String> responseData=new HashMap();
+	public String insertMember(@RequestBody  Member m) {
+		
+		System.out.println(m);
 		try {
 			memberService.insertMember(m);
-			responseData.put("msg","ok");
+			return "ok";
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			responseData.put("msg",e.getMessage());
+			return "nickname 이나 email이 중복됩니다";
 		}
 		
-		return responseData;
+		
 	}
 	
 
